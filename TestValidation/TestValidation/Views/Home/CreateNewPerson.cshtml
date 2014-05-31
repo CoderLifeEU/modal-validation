@@ -1,0 +1,36 @@
+﻿@model TestValidation.Models.Person
+
+@using (Html.BeginForm("CreateNewPerson", "Home", FormMethod.Post, new { @class = "create-person-modal-form" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+
+        <div class="control-group @(Html.ViewData.ModelState.IsValidField(Html.IdFor(model => model.FirstName).ToString()) ? null : "has-error" )">
+                                        <label class="control-label">Person Name</label>
+                                        
+                                        <div class="controls">
+                                            @Html.TextBoxFor(model => model.FirstName,new { @class="form-control input-small"})
+                                            @Html.ValidationMessageFor(model => model.FirstName)
+                                            <!--<input type="text" class="form-control input-small" name="required" id="required">-->
+                                        </div>
+                                    </div>
+
+        <div class="control-group @(Html.ViewData.ModelState.IsValidField(Html.IdFor(model => model.Age).ToString()) ? null : "has-error" )">
+                                        <label class="control-label">Person Age</label>
+                                        
+                                        <div class="controls">
+                                            @Html.TextBoxFor(model => model.Age,new { @class="form-control input-small"})
+                                            @Html.ValidationMessageFor(model => model.Age)
+                                            <!--<input type="text" class="form-control input-small" name="required" id="required">-->
+                                        </div>
+                                    </div>
+
+
+
+        <br />
+        <p>
+            <input type="submit" class="btn btn-success" value="Create" />
+        </p>
+    </fieldset>
+}
